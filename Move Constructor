@@ -1,0 +1,79 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Move {
+
+private:
+int *data;
+
+public:
+
+//Methods
+void setData(int d) { *data = d; }
+int getData() { return *data; }
+
+//contructor
+Move(int d) {
+cout << "constructor Called" << endl;
+data = new int;
+*data = d;
+}
+
+//Copy Constructor - DEEP COPY
+Move(const Move &source) :Move {*source.data} {
+
+cout << "Copy Constructor called" << endl;
+
+
+/*data = new int;*/ //Allocate Space
+/* *data = *source.data;*/ // Copy the source
+
+}
+
+//Destructor
+~Move() {
+if (data != nullptr) {
+cout << "Destructor called for " << *data << endl;
+}
+
+cout << "Destructor called for nullptr" << endl;
+
+
+delete data;
+}
+
+//MOVE CONSTRUCTOR
+//Move(Move &&source) :data{source.data} { // && is a reference of a R-value
+//
+// cout << "Move constructor called" << endl;
+// source.data = nullptr;
+
+//}
+
+
+};
+
+
+
+int main()
+{
+
+vector<Move> myVector;
+
+// The Copy Contructor will create copies of 10
+myVector.push_back(Move{ 10 }); // 10 is an unamed and temporary R-Value,
+
+
+
+
+//BUT IF WE USE THE MOVE CONSTRUCTOR IT WILL JUST CHANGE THE LOCATION OF THE ELEMENT
+
+
+system("pause");
+return 0;
+
+}
