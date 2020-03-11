@@ -1,0 +1,119 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+void menu();
+
+class Account {
+public:
+
+//attributes
+string customerName{ "Name" };
+double balance{0};
+
+//methods
+
+void printBalance() { cout <<"Hello "<< customerName << " Your balance is " << balance<<endl; }
+void withdraw(double amount) { balance -= amount; printBalance();}
+void deposit(double amount) { balance += amount; printBalance(); }
+};
+
+Account * customerPtr = new Account;
+int main()
+{
+
+cout << "Welcome to Andre's Bank!\n Are you ready to be rich?" << endl;
+
+cout << "Press one to start" << endl;
+int start{};
+cin >> start;
+
+if (start == 1) {
+
+
+
+cout << "Enter your first name" << endl;
+cin >> customerPtr->customerName;
+
+cout << "\nYour account has been created" << endl;
+
+menu();
+
+
+}
+else
+{
+exit(0);
+}
+
+
+
+
+
+
+
+
+system("pause");
+return 0;
+
+}
+
+void menu() {
+
+
+cout << "-----------Menu---------------" << endl;
+cout << "Press 1 to deposit" << endl;
+cout << "Press 2 to withdraw" << endl;
+cout << "Press 3 to print balance" << endl;
+cout << "Press 4 to exit" << endl;
+
+int menuChoice{};
+cin >> menuChoice;
+
+switch (menuChoice)
+{
+case 1: {
+cout << "Please enter the amount to be deposited" << endl;
+double depositAmount{};
+cin >> depositAmount;
+
+customerPtr->deposit(depositAmount);
+
+menu();
+break;
+}
+
+case 2: {
+cout << "Please enter the amount to be withdraw" << endl;
+double withdrawAmout{};
+cin >> withdrawAmout;
+
+if (withdrawAmout > customerPtr->balance || customerPtr->balance == 0)
+{
+cout << "You are broken, don't try to blame me for it" << endl;
+
+menu();
+}
+else
+
+customerPtr->withdraw(withdrawAmout);
+
+menu();
+break;
+}
+
+case 3:
+customerPtr->printBalance();
+
+menu();
+
+
+
+default:
+exit(0);
+break;
+}
+}
