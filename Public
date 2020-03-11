@@ -1,0 +1,50 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Player {
+
+public: // THIS WILL ALLOW YOU TO ACCESS THE OBJECTS
+
+//Attributes
+string name{ "Player Name" };
+int HP;
+int XP;
+
+
+//methods
+void talk(string);
+bool isDead();
+
+};
+
+
+int main()
+{
+
+//Manually creating and initializing an OBJ
+
+Player * andrePtr = new Player();
+
+andrePtr->name = "Andre";
+andrePtr->HP = 100;
+andrePtr->XP = 50;
+
+//You can dereference the pointer and access the obj
+//(*andrePtr).name = "Andre";
+//(*andrePtr).HP = 100;
+//(*andrePtr).XP = 50;
+
+
+
+cout << "This is my Player Info" << endl;
+cout << andrePtr->name << endl;
+cout << "HP: "<< andrePtr->HP << endl;
+cout << "XP: "<< andrePtr->XP << endl;
+
+system("pause");
+return 0;
+}
