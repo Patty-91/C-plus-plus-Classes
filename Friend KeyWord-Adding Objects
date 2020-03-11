@@ -1,0 +1,84 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Player {
+
+public:
+string playerName;
+int HP;
+int XP;
+
+// Constructor
+Player(string name, int HP, int XP) :playerName{ name }, HP{ HP }, XP{ XP }{}
+
+
+
+
+
+//Function to Add Player Stats
+Player add(Player& other) {
+
+this->playerName += " " + other.playerName;
+this->HP += other.HP;
+this->XP += other.XP;
+
+
+return other;
+
+}
+
+
+//Method to Print Player Stats
+void printPlayer()const {
+
+cout << "Name: " << playerName << endl;
+cout << "HP: " << HP << endl;
+cout << "XP: " << XP << endl;
+
+}
+
+
+friend Player add(Player& that, Player& other); // The word Friend tells the compiler that this function has access to the class elements
+
+};
+
+
+//Function to Add Player Stats
+Player add(Player& that ,Player& other) {
+
+that.playerName += " " + other.playerName;
+that.HP += other.HP;
+that.XP += other.XP;
+
+
+return other;
+
+}
+
+
+int main()
+{
+
+
+//creating objects
+Player * player1 = new Player("Andre", 100, 100);
+Player * player2 = new Player("Saygin", 100, 100);
+
+// Using a Method to Print Attributes
+player1->printPlayer();
+
+// Using a Method to Add Attributes of two objects
+add(*player1,*player2);
+
+// Using a Method to Print Attributes
+player1->printPlayer();
+
+
+system("pause");
+return 0;
+
+}
