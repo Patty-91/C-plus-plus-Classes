@@ -1,0 +1,103 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Player {
+
+public:
+string playerName;
+int HP;
+int XP;
+
+// Constructor
+Player(string name, int HP, int XP) :playerName{ name }, HP{ HP }, XP{ XP }{}
+Player() {};
+
+
+
+
+//Method to Print Player Stats
+void printPlayer()const {
+
+cout << "Name: " << playerName << endl;
+cout << "HP: " << HP << endl;
+cout << "XP: " << XP << endl;
+
+}
+
+//This is a operator overloading function
+
+Player operator + (Player& p) { // its like a method, you need to say what will happen with the left value(*this) and the right value(the argument)
+
+
+return add(*this, p); // we passsed the R and L arguments to our Add function;
+
+}
+
+
+
+
+
+
+
+friend Player add(Player& that, Player& other);
+friend ostream& operator<<(ostream& cout, Player& P);
+
+};
+
+
+//Overloading the output stream(ostream&) << operator
+
+ostream& operator<<(ostream& cout, Player& P) { //this function always receive this name and two parameters (string& which represents the Cout, Object& which represent the obj to be printed)
+
+cout << P.playerName << endl << P.HP << endl << P.XP << endl;
+
+return cout;
+
+}
+
+
+Player add(Player& that, Player& other) {
+
+that.playerName += " " + other.playerName;
+that.HP += other.HP;
+that.XP += other.XP;
+
+
+return that;
+
+}
+
+
+
+int main()
+{
+
+
+//creating objects
+Player * player1 = new Player("Andre", 100, 100);
+Player * player2 = new Player("Saygin", 100, 100);
+
+Player * player3 = new Player;
+
+//Print result with my overloaded ostream
+cout << *player1;
+
+
+
+//Using my Operator Overloading
+*player3 = *player1 + *player2;
+
+
+//Print result with my overloaded ostream
+cout << *player3;
+
+
+
+system("pause");
+return 0;
+
+}
