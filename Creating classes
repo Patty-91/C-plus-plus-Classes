@@ -1,0 +1,45 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Player { // Encapsulation - Create a blueprint to generate objects
+
+//Attributes
+string name;
+int HP;
+int XP;
+
+
+//methods
+void talk(string);
+bool isDead();
+
+};
+
+
+int main()
+{
+
+// Creating Objects from the Class
+Player Andre;
+Player Saygin;
+
+
+//Creating pointers to our Objects
+Player * playerPtr{};
+playerPtr = new Player; //This will allocate memory in the heap for a new player
+delete playerPtr; // free the memory
+
+
+// collection of objects
+vector<Player> myPlayers{ Andre};
+//insert one more hero to our collection
+myPlayers.push_back(Saygin);
+
+
+system("pause");
+return 0;
+}
