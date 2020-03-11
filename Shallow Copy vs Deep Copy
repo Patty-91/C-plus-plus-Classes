@@ -1,0 +1,100 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Deep {
+
+private:
+
+int * data;
+
+public:
+
+
+
+
+//default constructor delegating
+Deep(): Deep(0) {
+
+cout << "Default constructor called" << endl;
+
+}
+
+// Overloaded constructor
+Deep(int d) {
+
+cout << "Overloaded constructor was called" << endl;
+data = new int;
+*data = d;
+
+}
+
+//methods
+void setValue(int v) {
+*data = v;
+}
+
+int getValue() { return *data; };
+
+//Destructor
+~Deep() {
+delete data;
+cout << "Destructor was called" << endl;
+}
+
+//copy constructor - Shallow Copy
+//Deep(const Deep &source) :data(source.data) {
+
+
+// cout << "Copy constructor was called making a SHALLOW copy and duplicating the pointers" << endl;
+//}
+
+
+
+//copy constructor - Deep Copy
+Deep(const Deep &source) :Deep(*source.data) {
+
+
+cout << "Copy constructor was called making a DEEP copy and duplicating the pointers" << endl;
+}
+
+
+
+
+};
+
+void showDeep(Deep a);
+
+int main()
+
+{
+
+Deep * newObj = new Deep;
+
+
+newObj->setValue(100);
+showDeep(*newObj);
+
+
+Deep * newObj2 = new Deep;
+newObj2 = newObj;
+
+
+showDeep(*newObj2);
+
+
+
+
+
+system("pause");
+return 0;
+
+}
+
+void showDeep(Deep a) {
+
+cout << "Data inside the obj is " << a.getValue() << endl;
+}
