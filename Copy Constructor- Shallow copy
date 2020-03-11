@@ -1,0 +1,53 @@
+#include "pch.h"
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+
+
+class Account {
+public:
+
+//attributes
+string customerName{ "Name" };
+double balance{0};
+
+//methods
+
+void printBalance(Account a) { cout <<"Hello "<< customerName << " Your balance is " << a.balance <<endl; }
+
+
+//contructor prototype
+Account(string name = "NoName", double Balance = 0.0);
+
+
+
+//copy Constructor - This is called to pass arguments by value to a function
+Account(const Account &source) {
+cout << "A shallow copy was made from the copy constructor" << endl;
+}
+
+
+};
+//constructor definition
+Account::Account(string name, double Balance) : customerName{ name }, balance{ balance }{cout << "constructor called" << endl;}
+
+
+int main()
+{
+Account * original = new Account();
+
+original->customerName = "Original Customer";
+
+original->printBalance(*original); // A copy of the original customer was passed to the function - This is called Shallow Copy
+
+
+//IF YOU HAVE A POINTER AS AN ATTRIBUTE OF YOUR CLASS, THE SHALLOW COPY WILL CAUSE AN ERROR!!!!!
+
+
+system("pause");
+return 0;
+
+}
